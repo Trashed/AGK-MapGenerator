@@ -15,3 +15,6 @@
 
 
 #constant TILE_SIZE	32.0
+
+#constant SPRITE_GROUP_ASSET	10
+#constant SPRITE_GROUP_TILED	20

@@ -20,6 +20,7 @@ function LoadTileAssets()
 			img = loadImage( assetName, 0 )
 			inc count
 			createSprite( count, img ) : setSpriteVisible( count, FALSE )
+			setSpriteGroup( count, SPRITE_GROUP_ASSET )
 		endif
 		
 		assetName = getNextFile()

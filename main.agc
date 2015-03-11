@@ -28,6 +28,7 @@ global g_GridNumH as float : g_GridNumH = g_DeviceHeight/TILE_SIZE
 global g_SnapX as integer
 global g_SnapY as integer
 global g_GridSprite as integer
+global g_lastPlacedAssetId = 0
 
 
 

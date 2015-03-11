@@ -8,9 +8,11 @@
 
 
 function BrowseAssets()
-
+	
 	delta = getRawMouseWheelDelta()
 
+	if delta = 0 then setSpriteVisible( g_currentAssetIndex, TRUE )
+	
 	if delta > 0		// Wheel up increments index
 		inc g_currentAssetIndex
 		
@@ -68,10 +70,12 @@ function PlaceAsset()
 	
 	x# = getPointerX() : y# = getPointerY()
 	
-	if getRawMouseLeftState() = TRUE	
-		if getSpriteHit( x#, y# ) = FALSE
-			spr = cloneSprite( g_currentAssetIndex )
-			setSpritePosition( spr, g_SnapX, g_SnapY )
+	if getSpriteHitGroup( SPRITE_GROUP_TILED, x#, y# ) = FALSE
+		//print( "No assets placed here" )
+		if getRawMouseLeftState() = TRUE
+			
+			g_lastPlacedAssetId = cloneSprite( g_currentAssetIndex )
+			setSpriteGroup( g_lastPlacedAssetId, SPRITE_GROUP_TILED )
 		endif
 	endif
 endfunction
