@@ -36,12 +36,12 @@ endfunction
 
 function HandleCurrentAsset()
 
-	x# = getPointerX() : y# = getPointerY()
-	print( "PointerX: " + str( x# ) + ", PointerY: " + str( y# ) )
+	x = getPointerX() : y = getPointerY()
+	print( "PointerX: " + str( x ) + ", PointerY: " + str( y ) )
 	
 	// Calculate snapping coordinates for current sprite
-	g_SnapX = GetSnapCoordinate( x# )
-	g_SnapY = GetSnapCoordinate( y# )
+	g_SnapX = GetSnapCoordinate( x )
+	g_SnapY = GetSnapCoordinate( y )
 	if g_SnapX <= 0 then g_SnapX = 0
 	if g_SnapY <= 0 then g_SnapY = 0
 	if g_SnapX >= g_DeviceWidth then g_SnapX = g_DeviceWidth - TILE_SIZE
@@ -66,17 +66,30 @@ endfunction retVal
 
 
 
-function PlaceAsset()
+function PlaceAndDeleteAsset()
 	
-	x# = getPointerX() : y# = getPointerY()
+	x = getPointerX() : y = getPointerY()
 	
-	if getSpriteHitGroup( SPRITE_GROUP_TILED, x#, y# ) = FALSE
+	if getRawMouseLeftState() = TRUE
 		//print( "No assets placed here" )
-		if getRawMouseLeftState() = TRUE
+		if getSpriteHitGroup( SPRITE_GROUP_TILED, x+1, y+1 ) = FALSE
 			
 			g_lastPlacedAssetId = cloneSprite( g_currentAssetIndex )
 			setSpriteGroup( g_lastPlacedAssetId, SPRITE_GROUP_TILED )
 		endif
+	endif
+	
+	if getRawMouseRightState() = TRUE
+		setSpriteVisible( g_currentAssetIndex, FALSE )
+		print( "dadaaa" )
+		print( "sprite hit: " + str( getSpriteHit( x, y ) ) )
+		deleteId = getSpriteHitGroup( SPRITE_GROUP_TILED, x+1, y+1 )
+		if deleteId <> FALSE
+			print( "Delete sprite" )
+			deleteSprite( deleteId )
+		endif
+	else		
+		setSpriteVisible( g_currentAssetIndex, TRUE )
 	endif
 endfunction
 

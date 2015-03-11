@@ -82,7 +82,7 @@ do
 	HandleCurrentAsset()
 	
 	
-	PlaceAsset()
+	PlaceAndDeleteAsset()
 
 
 	sync()
