@@ -81,11 +81,8 @@ function PlaceAndDeleteAsset()
 	
 	if getRawMouseRightState() = TRUE
 		setSpriteVisible( g_currentAssetIndex, FALSE )
-		print( "dadaaa" )
-		print( "sprite hit: " + str( getSpriteHit( x, y ) ) )
 		deleteId = getSpriteHitGroup( SPRITE_GROUP_TILED, x+1, y+1 )
 		if deleteId <> FALSE
-			print( "Delete sprite" )
 			deleteSprite( deleteId )
 		endif
 	else		
