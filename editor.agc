@@ -38,15 +38,15 @@ function HandleCurrentAsset()
 	print( "PointerX: " + str( x# ) + ", PointerY: " + str( y# ) )
 	
 	// Calculate snapping coordinates for current sprite
-	snapX = GetSnapCoordinate( x# )
-	snapY = GetSnapCoordinate( y# )
-	if snapX <= 0 then snapX = 0
-	if snapY <= 0 then snapY = 0
-	if snapX >= g_DeviceWidth then snapX = g_DeviceWidth - TILE_SIZE
-	if snapY >= g_DeviceHeight then snapY = g_DeviceHeight - TILE_SIZE
-	print( "SnapX: " + str( snapX ) + ", SnapY: " + str( snapY ) )	
+	g_SnapX = GetSnapCoordinate( x# )
+	g_SnapY = GetSnapCoordinate( y# )
+	if g_SnapX <= 0 then g_SnapX = 0
+	if g_SnapY <= 0 then g_SnapY = 0
+	if g_SnapX >= g_DeviceWidth then g_SnapX = g_DeviceWidth - TILE_SIZE
+	if g_SnapY >= g_DeviceHeight then g_SnapY = g_DeviceHeight - TILE_SIZE
+	print( "SnapX: " + str( g_SnapX ) + ", SnapY: " + str( g_SnapY ) )	
 	
-	setSpritePosition( g_assetVisibleIndex, snapX, snapY )
+	setSpritePosition( g_assetVisibleIndex, g_SnapX, g_SnapY )
 endfunction
 
 
@@ -60,3 +60,15 @@ function GetSnapCoordinate( ptrCoord as float )
 	
 	retVal = temp * TILE_SIZE
 endfunction retVal
+
+
+
+
+function PlaceAsset()
+	
+	if getRawMouseLeftState() = TRUE
+		spr = cloneSprite( g_assetVisibleIndex )
+		setSpritePosition( spr, g_SnapX, g_SnapY )
+	endif
+endfunction
+
