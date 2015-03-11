@@ -22,7 +22,7 @@ global g_isDebugging = TRUE
 global g_DeviceWidth as float : g_DeviceWidth = getDeviceWidth()
 global g_DeviceHeight as float : g_DeviceHeight = getDeviceHeight()
 global g_assetCount = 0
-global g_assetVisibleIndex = 1
+global g_currentAssetIndex = 1
 global g_GridNumW as float : g_GridNumW = g_DeviceWidth/TILE_SIZE
 global g_GridNumH as float : g_GridNumH = g_DeviceHeight/TILE_SIZE
 global g_SnapX as integer

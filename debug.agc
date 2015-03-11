@@ -29,8 +29,8 @@ function PrintDebugInfo()
 		print( "Last keycode: " + str( getRawLastKey() ) )
 		print( "FPS = " + left( str( screenFPS() ), 6 ) )						// FPS
 		print( "W = " + str( g_deviceWidth ) + ", H = " + str( g_deviceHeight ) )
-		print( "Sprite count: " + str( g_assetCount ) )
-		print( "Visible sprite index: " + str( g_assetVisibleIndex ) )
+		print( "Sprite count: " + str( getManagedSpriteCount() ) )
+		print( "Visible sprite index: " + str( g_currentAssetIndex ) )
 		//print( "w: " + str( w# ) + ", h: " + str( h# ) )
 		//print( "tile size: " + str( TILE_SIZE ) )
 	endif

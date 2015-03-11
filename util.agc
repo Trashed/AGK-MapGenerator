@@ -31,10 +31,11 @@ endfunction
 function ScaleTileAssets()
 
 	sync()
-	g_assetCount = getManagedSpriteCount()
+	count = getManagedSpriteCount()
+	g_assetCount = count
 	
 	// Scale assets to tile size (32 x 32 pixels)
-	for i = 1 to g_assetCount
+	for i = 1 to count
 		w# = TILE_SIZE
 		h# = TILE_SIZE
 		

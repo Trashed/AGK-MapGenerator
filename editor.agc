@@ -12,19 +12,19 @@ function BrowseAssets()
 	delta = getRawMouseWheelDelta()
 
 	if delta > 0		// Wheel up increments index
-		inc g_assetVisibleIndex
+		inc g_currentAssetIndex
 		
-		if g_assetVisibleIndex >= g_assetCount then g_assetVisibleIndex = g_assetCount
+		if g_currentAssetIndex >= g_assetCount then g_currentAssetIndex = g_assetCount
 
-		setSpriteVisible( g_assetVisibleIndex, TRUE )
-		setSpriteVisible( g_assetVisibleIndex-1, FALSE )
+		setSpriteVisible( g_currentAssetIndex, TRUE )
+		setSpriteVisible( g_currentAssetIndex-1, FALSE )
 	elseif delta < 0	// Wheel down decrements index
-		dec g_assetVisibleIndex
+		dec g_currentAssetIndex
 		
-		if g_assetVisibleIndex <= 1 then g_assetVisibleIndex = 1
+		if g_currentAssetIndex <= 1 then g_currentAssetIndex = 1
 
-		setSpriteVisible( g_assetVisibleIndex, TRUE )		
-		setSpriteVisible( g_assetVisibleIndex+1, FALSE )
+		setSpriteVisible( g_currentAssetIndex, TRUE )		
+		setSpriteVisible( g_currentAssetIndex+1, FALSE )
 	endif
 endfunction
 
@@ -46,7 +46,7 @@ function HandleCurrentAsset()
 	if g_SnapY >= g_DeviceHeight then g_SnapY = g_DeviceHeight - TILE_SIZE
 	print( "SnapX: " + str( g_SnapX ) + ", SnapY: " + str( g_SnapY ) )	
 	
-	setSpritePosition( g_assetVisibleIndex, g_SnapX, g_SnapY )
+	setSpritePosition( g_currentAssetIndex, g_SnapX, g_SnapY )
 endfunction
 
 
@@ -66,9 +66,13 @@ endfunction retVal
 
 function PlaceAsset()
 	
-	if getRawMouseLeftState() = TRUE
-		spr = cloneSprite( g_assetVisibleIndex )
-		setSpritePosition( spr, g_SnapX, g_SnapY )
+	x# = getPointerX() : y# = getPointerY()
+	
+	if getRawMouseLeftState() = TRUE	
+		if getSpriteHit( x#, y# ) = FALSE
+			spr = cloneSprite( g_currentAssetIndex )
+			setSpritePosition( spr, g_SnapX, g_SnapY )
+		endif
 	endif
 endfunction
 
