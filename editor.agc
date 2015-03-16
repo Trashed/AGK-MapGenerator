@@ -71,12 +71,15 @@ function PlaceAndDeleteAsset()
 	x = getPointerX() : y = getPointerY()
 	
 	if getRawMouseLeftState() = TRUE
-		//print( "No assets placed here" )
-		if getSpriteHitGroup( SPRITE_GROUP_TILED, x+1, y+1 ) = FALSE
-			
-			g_lastPlacedAssetId = cloneSprite( g_currentAssetIndex )
-			setSpriteGroup( g_lastPlacedAssetId, SPRITE_GROUP_TILED )
+		// If now ID is found, add new asset sprite on the screen. 
+		// Else, delete the current asset on the screen and place a new one.
+		currentAsset = getSpriteHitGroup( SPRITE_GROUP_TILED, x+1, y+1 )
+		if currentAsset <> FALSE
+			deleteSprite( currentAsset )
 		endif
+		
+		g_lastPlacedAssetId = cloneSprite( g_currentAssetIndex )
+		setSpriteGroup( g_lastPlacedAssetId, SPRITE_GROUP_TILED )
 	endif
 	
 	if getRawMouseRightState() = TRUE
