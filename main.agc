@@ -29,6 +29,7 @@ global g_SnapX as integer
 global g_SnapY as integer
 global g_GridSprite as integer
 global g_lastPlacedAssetId = 0
+global g_currentEditorLayer = LAYER_GROUND
 
 
 
@@ -52,7 +53,8 @@ InitApplication()
 do
 	PrintDebugInfo()
 	
-	
+	// Handle editor layer toggling
+	ToggleEditorLayer()
 	
 	
 	

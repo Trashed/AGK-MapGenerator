@@ -18,3 +18,6 @@
 
 #constant SPRITE_GROUP_ASSET	10
 #constant SPRITE_GROUP_TILED	20
+
+#constant LAYER_GROUND			2
+#constant LAYER_OBSTACLE			1

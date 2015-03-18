@@ -74,14 +74,20 @@ function PlaceAndDeleteAsset()
 	x = getPointerX() : y = getPointerY()
 	
 	assetSpriteHit = getSpriteHitGroup( SPRITE_GROUP_TILED, x+1, y+1 )
+	
+	if assetSpriteHit > 0 then assetSpriteDepth = getSpriteDepth( assetSpriteHit )
 	print( "Current asset under pointer: " + str( assetSpriteHit ) )
+	print( "Depth of current asset under pointer: " + str( assetSpriteDepth ) )
 	
 	if getRawMouseLeftState() = TRUE
 		// If now ID is found, add new asset sprite on the screen. 
 		// Else, delete the current asset on the screen and place a new one.
 		if assetSpriteHit <> FALSE
 			// Replace the asset sprite on the screen if it's the same as the one "attached" to the pointer
-			ReplaceAsset( assetSpriteHit )
+			if g_currentEditorLayer = LAYER_GROUND then ReplaceAsset( assetSpriteHit )
+			if g_currentEditorLayer = LAYER_OBSTACLE and assetSpriteDepth = LAYER_GROUND
+				PlaceCurrentAsset()
+			endif
 		elseif assetSpriteHit = FALSE
 			PlaceCurrentAsset()
 		endif
@@ -104,7 +110,7 @@ function PlaceCurrentAsset()
 
 	g_lastPlacedAssetId = cloneSprite( g_currentAssetIndex )
 	setSpriteGroup( g_lastPlacedAssetId, SPRITE_GROUP_TILED )
-	setSpriteDepth( g_lastPlacedAssetId, 10 )
+	setSpriteDepth( g_lastPlacedAssetId, g_currentEditorLayer )
 endfunction
 
 
@@ -114,5 +120,20 @@ function ReplaceAsset( spriteHit )
 	id = getSpriteImageId( g_currentAssetIndex )
 	if getSpriteImageId( spriteHit ) <> id
 		setSpriteImage( spriteHit, id )
+	endif
+endfunction
+
+
+
+
+function ToggleEditorLayer()
+	
+	if getRawKeyPressed( 76 ) = TRUE
+		print( "TOGGLED!" )
+		if g_currentEditorLayer = LAYER_GROUND
+			g_currentEditorLayer = LAYER_OBSTACLE
+		else
+			g_currentEditorLayer = LAYER_GROUND
+		endif
 	endif
 endfunction
