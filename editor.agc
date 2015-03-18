@@ -28,6 +28,9 @@ function BrowseAssets()
 		setSpriteVisible( g_currentAssetIndex, TRUE )		
 		setSpriteVisible( g_currentAssetIndex+1, FALSE )
 	endif
+	
+	setSpriteDepth( g_currentAssetIndex, 0 )
+	
 endfunction
 
 
@@ -70,16 +73,19 @@ function PlaceAndDeleteAsset()
 	
 	x = getPointerX() : y = getPointerY()
 	
+	assetSpriteHit = getSpriteHitGroup( SPRITE_GROUP_TILED, x+1, y+1 )
+	print( "Current asset under pointer: " + str( assetSpriteHit ) )
+	
 	if getRawMouseLeftState() = TRUE
 		// If now ID is found, add new asset sprite on the screen. 
 		// Else, delete the current asset on the screen and place a new one.
-		currentAsset = getSpriteHitGroup( SPRITE_GROUP_TILED, x+1, y+1 )
-		if currentAsset <> FALSE
-			deleteSprite( currentAsset )
+		if assetSpriteHit <> FALSE
+			// Replace the asset sprite on the screen if it's the same as the one "attached" to the pointer
+			ReplaceAsset( assetSpriteHit )
+		elseif assetSpriteHit = FALSE
+			PlaceCurrentAsset()
 		endif
 		
-		g_lastPlacedAssetId = cloneSprite( g_currentAssetIndex )
-		setSpriteGroup( g_lastPlacedAssetId, SPRITE_GROUP_TILED )
 	endif
 	
 	if getRawMouseRightState() = TRUE
@@ -93,3 +99,20 @@ function PlaceAndDeleteAsset()
 	endif
 endfunction
 
+
+function PlaceCurrentAsset()
+
+	g_lastPlacedAssetId = cloneSprite( g_currentAssetIndex )
+	setSpriteGroup( g_lastPlacedAssetId, SPRITE_GROUP_TILED )
+	setSpriteDepth( g_lastPlacedAssetId, 10 )
+endfunction
+
+
+
+function ReplaceAsset( spriteHit )
+	// Get the image id of the sprite on the POINTER
+	id = getSpriteImageId( g_currentAssetIndex )
+	if getSpriteImageId( spriteHit ) <> id
+		setSpriteImage( spriteHit, id )
+	endif
+endfunction
