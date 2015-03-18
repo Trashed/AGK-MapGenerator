@@ -37,25 +37,6 @@ global g_lastPlacedAssetId = 0
 InitApplication()
 
 
-/*
-// Create the background grid
-swap()
-
-for i = 0 to g_GridNumW step TILE_SIZE
-	drawLine( i, 0, i, g_DeviceHeight, 170, 170, 170 )
-	render()
-next i
-
-for j = 0 to g_GridNumH step TILE_SIZE
-	drawLine( 0, j, g_DeviceWidth, j, 170, 170, 170 )
-	render()
-next j
-
-img = getImage( 0, 0, g_DeviceWidth, g_DeviceHeight )
-g_GridSprite = createSprite( img )
-setSpritePosition( g_GridSprite, 0, 0 ) */
-
-
 
 
 
