@@ -98,7 +98,10 @@ function PlaceAndDeleteAsset()
 		setSpriteVisible( g_currentAssetIndex, FALSE )
 		deleteId = getSpriteHitGroup( SPRITE_GROUP_TILED, x+1, y+1 )
 		if deleteId <> FALSE
-			deleteSprite( deleteId )
+		
+			if getSpriteDepth( deleteId ) = g_currentEditorLayer
+				deleteSprite( deleteId )
+			endif
 		endif
 	else		
 		setSpriteVisible( g_currentAssetIndex, TRUE )
