@@ -12,3 +12,12 @@
 // Booleans
 #constant TRUE 	1
 #constant FALSE 	0
+
+
+#constant TILE_SIZE	32.0
+
+#constant SPRITE_GROUP_ASSET	10
+#constant SPRITE_GROUP_TILED	20
+
+#constant LAYER_GROUND			2
+#constant LAYER_OBSTACLE			1

@@ -81,7 +81,7 @@ loop
 //===================================================
 function InitApplication()
 	//setDisplayAspect( 16.0/10.0 )		// Use percentage method for sprite placing
-	setVirtualResolution( 1920, 1080 )
+	setVirtualResolution( 1280, 800 )
 	setSyncRate( 0, 1 )				// Draw sprites as fast as possible but save CPU at the same time
 	
 	// TODO: Set up background grid

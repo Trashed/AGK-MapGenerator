@@ -31,5 +31,10 @@ function PrintDebugInfo()
 		print( "W = " + str( g_deviceWidth ) + ", H = " + str( g_deviceHeight ) )
 		print( "Sprite count: " + str( getManagedSpriteCount() ) )
 		print( "Visible sprite index: " + str( g_currentAssetIndex ) )
+		print( "Last placed asset ID: " + str( g_lastPlacedAssetId ) )
+		print( "Current editor layer: " + str( g_currentEditorLayer ) )
+		//print( "Is mouse on tiled asset: " + str(  ) )
+		//print( "w: " + str( w# ) + ", h: " + str( h# ) )
+		//print( "tile size: " + str( TILE_SIZE ) )
 	endif
 endfunction
