@@ -47,8 +47,8 @@ function ScaleTileAssets()
 	
 	// Scale assets to tile size (32 x 32 pixels)
 	for i = 1 to count
-		if getSpriteWidth( i ) > TILE_SIZE then w# = TILE_SIZE
-		if getSpriteHeight( i ) > TILE_SIZE then h# = TILE_SIZE
+		if getSpriteWidth( i ) > mLevel.tileSize then w# = mLevel.tileSize
+		if getSpriteHeight( i ) > mLevel.tileSize then h# = mLevel.tileSize
 		
 		setSpriteSize( i, w#, h# )
 		//setSpriteOffset( i, w#/2, h#/2 )

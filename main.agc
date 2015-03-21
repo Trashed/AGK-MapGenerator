@@ -17,15 +17,32 @@
 #include "debug.agc"
 
 
+// UDTs
+type Level
+	width as integer
+	height as integer
+	tileSize as integer
+	gridsW as integer
+	gridsH as integer
+endtype
+
+
 
 // Globals
+global mLevel as Level
+mLevel.width = getDeviceWidth()
+mLevel.height = getDeviceHeight()
+mLevel.tileSize = 32
+mLevel.gridsW = mLevel.width/mLevel.tileSize
+mLevel.gridsH = mLevel.height/mLevel.tileSize
+
 global g_isDebugging = FALSE
-global g_DeviceWidth as float : g_DeviceWidth = getDeviceWidth()
-global g_DeviceHeight as float : g_DeviceHeight = getDeviceHeight()
+//global g_DeviceWidth as float : g_DeviceWidth = getDeviceWidth()
+//global g_DeviceHeight as float : g_DeviceHeight = getDeviceHeight()
 global g_assetCount = 0
 global g_currentAssetIndex = 1
-global g_GridNumW as float : g_GridNumW = g_DeviceWidth/TILE_SIZE
-global g_GridNumH as float : g_GridNumH = g_DeviceHeight/TILE_SIZE
+//global g_GridNumW as float : g_GridNumW = mLevel.width/TILE_SIZE
+//global g_GridNumH as float : g_GridNumH = mLevel.height/TILE_SIZE
 global g_SnapX as integer
 global g_SnapY as integer
 global g_GridSprite as integer
@@ -88,7 +105,7 @@ loop
 //===================================================
 function InitApplication()
 	//setDisplayAspect( 16.0/10.0 )		// Use percentage method for sprite placing
-	setVirtualResolution( 1280, 800 )
+	setVirtualResolution( 1920, 1080 )
 	setSyncRate( 0, 1 )				// Draw sprites as fast as possible but save CPU at the same time
 	setPrintSize( 17 )
 	

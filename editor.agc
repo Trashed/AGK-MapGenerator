@@ -47,8 +47,8 @@ function HandleCurrentAsset()
 	g_SnapY = GetSnapCoordinate( y )
 	if g_SnapX <= 0 then g_SnapX = 0
 	if g_SnapY <= 0 then g_SnapY = 0
-	if g_SnapX >= g_DeviceWidth then g_SnapX = g_DeviceWidth - TILE_SIZE
-	if g_SnapY >= g_DeviceHeight then g_SnapY = g_DeviceHeight - TILE_SIZE
+	if g_SnapX >= mLevel.height then g_SnapX = mLevel.height - mLevel.tileSize
+	if g_SnapY >= mLevel.height then g_SnapY = mLevel.height - mLevel.tileSize
 	//print( "SnapX: " + str( g_SnapX ) + ", SnapY: " + str( g_SnapY ) )	
 	
 	//setSpritePosition( g_currentAssetIndex, g_SnapX, g_SnapY )
@@ -61,9 +61,9 @@ endfunction
 function GetSnapCoordinate( ptrCoord as float )
 	retVal as integer : temp as float
 	
-	temp = floor( (ptrCoord/TILE_SIZE) )
+	temp = floor( (ptrCoord/mLevel.tileSize) )
 	
-	retVal = temp * TILE_SIZE
+	retVal = temp * mLevel.tileSize
 endfunction retVal
 
 

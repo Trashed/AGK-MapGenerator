@@ -10,9 +10,9 @@ rem Window title (delete to hide window bar)
 title=MapGenerator
 
 rem Specify the initial device width
-width=1280
+width=1920
 
 rem Specify the initial device height
-height=800
+height=1080
 // Specify whether to use fullscreen mode
 fullscreen=0
