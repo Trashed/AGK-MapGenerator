@@ -11,6 +11,7 @@
 
 // Include files
 #include "constants.agc"
+#include "gui.agc"
 #include "util.agc"
 #include "editor.agc"
 #include "debug.agc"
@@ -18,7 +19,7 @@
 
 
 // Globals
-global g_isDebugging = TRUE
+global g_isDebugging = FALSE
 global g_DeviceWidth as float : g_DeviceWidth = getDeviceWidth()
 global g_DeviceHeight as float : g_DeviceHeight = getDeviceHeight()
 global g_assetCount = 0
@@ -31,14 +32,16 @@ global g_GridSprite as integer
 global g_lastPlacedAssetId = 0
 global g_currentEditorLayer = LAYER_GROUND
 
+global g_GuiSidePanel as integer
+
 
 
 
 // Init app
 InitApplication()
 
-
-
+// Creates GUI components
+CreateGui()
 
 
 // ======================================
@@ -52,6 +55,10 @@ InitApplication()
 // ======================================
 do
 	PrintDebugInfo()
+	
+	// Updates GUI handling
+	//UpdateGui()
+	
 	
 	// Handle editor layer toggling
 	ToggleEditorLayer()

@@ -21,3 +21,6 @@
 
 #constant LAYER_GROUND			2
 #constant LAYER_OBSTACLE			1
+
+#constant BTN_SAVE		100
+#constant BTN_LOAD		200
