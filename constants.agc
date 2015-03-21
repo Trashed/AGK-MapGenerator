@@ -24,3 +24,6 @@
 
 #constant BTN_SAVE		100
 #constant BTN_LOAD		200
+#constant EB_LEVEL_W		300
+#constant EB_LEVEL_H		400
+#constant EB_LEVEL_TS	500

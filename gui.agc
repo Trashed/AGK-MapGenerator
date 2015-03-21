@@ -24,6 +24,31 @@ function CreateGui()
 	createSprite( BTN_LOAD, loadImage( "btn_load.png" ) )
 	setSpriteScale( BTN_LOAD, 0.3, 0.3 )
 	setSpritePosition( BTN_LOAD, getSpriteWidth( BTN_SAVE ) + 45, 10 )
+	
+	// Editbox and label for level width
+	createText( 1, "Level width: " )
+	setTextPosition( 1, 10, getSpriteHeight( BTN_SAVE ) + 50 )
+	setTextSize( 1, 15 )
+	createEditBox( EB_LEVEL_W )
+	setEditBoxPosition( EB_LEVEL_W, getTextTotalWidth( 1 ) + 5, getSpriteY( BTN_SAVE ) + getSpriteHeight( BTN_SAVE ) + 40 )
+	setEditBoxSize( EB_LEVEL_W, 100, 20 )
+	
+	// Editbox and label for level height
+	createText( 2, "Level height: " )
+	setTextPosition( 2, 10, getTextY( 1 ) + 30 )
+	setTextSize( 2, 15 )
+	createEditBox( EB_LEVEL_H )
+	setEditBoxPosition( EB_LEVEL_H, getTextTotalWidth( 2 ) + 5, getSpriteY( BTN_SAVE ) + getSpriteHeight( BTN_SAVE ) + 70 )
+	setEditBoxSize( EB_LEVEL_H, 100, 20 )
+	
+	// Editbox and text for tile size
+	createText( 3, "Tile size (px): " )
+	setTextPosition( 3, 10, getTextY( 2 ) + 30 )
+	setTextSize( 3, 15 )
+	createEditBox( EB_LEVEL_TS )
+	setEditBoxPosition( EB_LEVEL_TS, getTextTotalWidth( 3 ) + 5, getSpriteY( BTN_SAVE ) + getSpriteHeight( BTN_SAVE ) + 100 )
+	setEditBoxSize( EB_LEVEL_TS, 50, 20 )
+	
 endfunction
 
 
@@ -33,7 +58,7 @@ function UpdateGui()
 	x = getPointerX() : y = getPointerY()
 	//print( "X: " + str( x ) + ", Y: " + str( y ) )
 	
-	// Detect mouse over Save button
+	// Update panel button behaviour
 	spriteHitId = getSpriteHit( x, y )
 	//print( "SpriteHit: " + str( spriteHitId ) )
 	if spriteHitId = BTN_SAVE
