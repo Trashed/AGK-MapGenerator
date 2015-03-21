@@ -57,7 +57,7 @@ do
 	PrintDebugInfo()
 	
 	// Updates GUI handling
-	//UpdateGui()
+	UpdateGui()
 	
 	
 	// Handle editor layer toggling
@@ -90,6 +90,7 @@ function InitApplication()
 	//setDisplayAspect( 16.0/10.0 )		// Use percentage method for sprite placing
 	setVirtualResolution( 1280, 800 )
 	setSyncRate( 0, 1 )				// Draw sprites as fast as possible but save CPU at the same time
+	setPrintSize( 17 )
 	
 	// TODO: Set up background grid
 	
