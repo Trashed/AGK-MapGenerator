@@ -9,7 +9,6 @@
 
 function LoadTileAssets()
 
-	assetDir as string : assetDir = "/media/"
 	count = 0
 	assetName as string : assetName = getFirstFile()
 	
