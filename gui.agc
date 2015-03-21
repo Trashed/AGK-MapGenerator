@@ -37,10 +37,11 @@ function UpdateGui()
 	spriteHitId = getSpriteHit( x, y )
 	//print( "SpriteHit: " + str( spriteHitId ) )
 	if spriteHitId = BTN_SAVE
-		//print( "Save button!" )
-		setSpriteColor( BTN_SAVE, getSpriteColorRed( BTN_SAVE ) + 100, getSpriteColorGreen( BTN_SAVE ) + 100, getSpriteColorRed( BTN_SAVE ), 255 )
+		setSpriteScale( BTN_SAVE, 0.25, 0.25 )
 	elseif spriteHitId = BTN_LOAD
-		//print( "Load button" )
-		setSpriteColor( BTN_LOAD, getSpriteColorRed( BTN_LOAD ) + 100, getSpriteColorGreen( BTN_LOAD ) + 100, getSpriteColorRed( BTN_LOAD ), 255 )
+		setSpriteScale( BTN_LOAD, 0.25, 0.25 )
+	else
+		setSpriteScale( BTN_SAVE, 0.3, 0.3 )
+		setSpriteScale( BTN_LOAD, 0.3, 0.3 )
 	endif
 endfunction
