@@ -52,6 +52,30 @@ function CreateGui()
 	setEditBoxPosition( EB_LEVEL_TS, getTextTotalWidth( 3 ) + 5, getSpriteY( BTN_SAVE ) + getSpriteHeight( BTN_SAVE ) + 100 )
 	setEditBoxSize( EB_LEVEL_TS, 50, 20 )
 	
+	// Separator label for Layer part of the panel
+	createText( 4, "------ Layers ------" )
+	setTextPosition( 4, 25, getEditBoxY( EB_LEVEL_TS ) + 60 )
+	setTextSize( 4, 20 )
+	
+	createText( 5, "Set active layer" )
+	setTextPosition( 5, 10, getTextY( 4 ) + 30 )
+	setTextSize( 5, 15 )
+	
+	createText( 6, "Ground" )
+	setTextPosition( 6, 10, getTextY( 5 ) + 20 )
+	setTextSize( 6, 15 )
+	
+	// Toggle button, ground layer
+	addVirtualButton( VB_TOGGLE_GRND, 10 + getTextTotalWidth( 6 ) +15, getTextY( 5 ) + 30, 25 )
+	
+	createText( 7, "Obstacle" )
+	setTextPosition( 7, getTextTotalWidth( 6 ) +  50, getTextY( 5 ) + 20 )
+	setTextSize( 7, 15 )
+	
+	// Toggle button, ground layer
+	addVirtualButton( VB_TOGGLE_OBST, 10 + getTextTotalWidth( 7 ) + 110, getTextY( 5 ) + 30, 25 )
+	
+	
 endfunction
 
 
@@ -61,18 +85,30 @@ function UpdateGui()
 
 	x = getPointerX() : y = getPointerY()
 	
+	UpdateButtons( x, y )
+	UpdateEditBoxes()	
+	UpdateToggleButtons()
+endfunction
+
+
+function UpdateButtons( _x, _y )
+	
 	// Update panel button behaviour
-	spriteHitId = getSpriteHit( x, y )
+	spriteHitId = getSpriteHit( _x, _y )
 	if spriteHitId = BTN_SAVE
-		setSpriteScale( BTN_SAVE, 0.25, 0.25 )
+		setSpriteScale( BTN_SAVE, 0.28, 0.28 )
 	elseif spriteHitId = BTN_LOAD
-		setSpriteScale( BTN_LOAD, 0.25, 0.25 )
+		setSpriteScale( BTN_LOAD, 0.28, 0.28 )
 	else
 		setSpriteScale( BTN_SAVE, 0.3, 0.3 )
 		setSpriteScale( BTN_LOAD, 0.3, 0.3 )
 	endif
-	
-	
+endfunction
+
+
+
+function UpdateEditBoxes()
+
 	// If EditBoxes' value have recently changed, update the corresponding variable
 	if getEditBoxChanged( EB_LEVEL_W ) = TRUE
 		mLevel.width = val( getEditBoxText( EB_LEVEL_W ) )
@@ -85,6 +121,31 @@ function UpdateGui()
 	if getEditBoxChanged( EB_LEVEL_TS ) = TRUE
 		mLevel.tileSize = val( getEditBoxText( EB_LEVEL_TS ) )
 	endif
+	
+	// Update grid values in mLevel UDT 
 	mLevel.gridsW = mLevel.width / mLevel.tileSize
 	mLevel.gridsH = mLevel.height / mLevel.tileSize
+endfunction
+
+
+
+function UpdateToggleButtons()
+	
+	if getVirtualButtonReleased( VB_TOGGLE_GRND ) = TRUE
+		if mLevel.currentLayer <> LAYER_GROUND
+			mLevel.currentLayer = LAYER_GROUND
+		endif
+	elseif getVirtualButtonReleased( VB_TOGGLE_OBST ) = TRUE
+		if mLevel.currentLayer <> LAYER_OBSTACLE
+			mLevel.currentLayer = LAYER_OBSTACLE
+		endif
+	endif
+	
+	if mLevel.currentLayer = LAYER_GROUND
+		setVirtualButtonColor( VB_TOGGLE_GRND, 0, 255, 0 )
+		setVirtualButtonColor( VB_TOGGLE_OBST, 120, 120, 120 )
+	else
+		setVirtualButtonColor( VB_TOGGLE_GRND, 120, 120, 120 )
+		setVirtualButtonColor( VB_TOGGLE_OBST, 0, 255, 0 )
+	endif
 endfunction

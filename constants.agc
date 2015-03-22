@@ -27,3 +27,5 @@
 #constant EB_LEVEL_W		300
 #constant EB_LEVEL_H		400
 #constant EB_LEVEL_TS	500
+#constant VB_TOGGLE_GRND	1
+#constant VB_TOGGLE_OBST	2

@@ -24,6 +24,7 @@ type Level
 	tileSize as integer
 	gridsW as integer
 	gridsH as integer
+	currentLayer as integer
 endtype
 
 
@@ -35,6 +36,7 @@ mLevel.height = getDeviceHeight()
 mLevel.tileSize = 32
 mLevel.gridsW = mLevel.width/mLevel.tileSize
 mLevel.gridsH = mLevel.height/mLevel.tileSize
+mLevel.currentLayer = LAYER_GROUND
 
 global g_isDebugging = FALSE
 //global g_DeviceWidth as float : g_DeviceWidth = getDeviceWidth()
@@ -47,7 +49,7 @@ global g_SnapX as integer
 global g_SnapY as integer
 global g_GridSprite as integer
 global g_lastPlacedAssetId = 0
-global g_currentEditorLayer = LAYER_GROUND
+//global g_currentEditorLayer = LAYER_GROUND
 
 global g_GuiSidePanel as integer
 
